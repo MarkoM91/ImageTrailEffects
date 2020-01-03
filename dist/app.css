@@ -1,0 +1,255 @@
+@charset "UTF-8";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-size: 16px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  color: #262523;
+  background-color: #efece5;
+  font-family: quiroh, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Page Loader */
+
+.js .loading::before {
+  content: "";
+  position: fixed;
+  z-index: 100000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #efece5;
+}
+
+.js .loading::after {
+  content: "";
+  position: fixed;
+  z-index: 100000;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: 0.4;
+  background: #eca324;
+  -webkit-animation: loaderAnim 0.7s linear infinite alternate forwards;
+          animation: loaderAnim 0.7s linear infinite alternate forwards;
+}
+
+@-webkit-keyframes loaderAnim {
+  to {
+    opacity: 1;
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+            transform: scale3d(0.5, 0.5, 1);
+  }
+}
+
+@keyframes loaderAnim {
+  to {
+    opacity: 1;
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+            transform: scale3d(0.5, 0.5, 1);
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #eca324;
+}
+
+a:hover,
+a:focus {
+  color: #262523;
+  outline: 0;
+}
+
+.message {
+  padding: 1rem;
+  color: #efece5;
+  background: #262523;
+  text-align: center;
+  font-weight: bold;
+}
+
+.frame {
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 1000;
+  grid-area: 1/1/2/2;
+  align-self: start;
+}
+
+.frame__title {
+  font-size: 1rem;
+  margin: 0 0 1rem;
+}
+
+.frame__links {
+  display: inline;
+}
+
+.frame__github,
+.frame__links a:not(:last-child),
+.frame__demos a:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.frame__demos {
+  margin: 1rem 0;
+}
+
+.frame__demo--current,
+.frame__demo--current:hover {
+  color: #262523;
+  text-decoration: line-through;
+  letter-spacing: 40px;
+}
+
+.frame__pagetitle {
+  margin: 3rem 0 0 0;
+}
+
+.frame__pagetitle span {
+  display: block;
+  font-weight: normal;
+  font-size: 0.85rem;
+}
+
+.frame__pagetitle span::before {
+  content: "\2015    ";
+}
+
+.content {
+  height: 300px;
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  isolation: isolate;
+}
+
+.content__title {
+  font-family: forma-djr-display, sans-serif;
+  font-weight: 700;
+  position: relative;
+  z-index: 10000;
+  font-size: 27vw;
+  mix-blend-mode: difference;
+  -webkit-text-stroke: 2px #ffffff;
+  text-stroke: 2px #ffffff;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  color: transparent;
+  pointer-events: none;
+}
+
+.content__img {
+  max-width: 250px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  will-change: transform;
+  -webkit-filter: none;
+          filter: none;
+}
+
+.content__img--full {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+@media screen and (min-width: 53em) {
+  :root {
+    font-size: 18px;
+  }
+
+  body {
+    overflow: hidden;
+  }
+
+  .message {
+    display: none;
+  }
+
+  .frame {
+    position: fixed;
+    text-align: left;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    display: grid;
+    align-content: space-between;
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    padding: 2rem;
+    pointer-events: none;
+    grid-template-columns: 75% 25%;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "pagetitle github" "... ..." "title ...";
+  }
+
+  .frame__pagetitle {
+    grid-area: pagetitle;
+    margin: 0;
+  }
+
+  .frame__title-wrap {
+    grid-area: title;
+    display: -webkit-box;
+    display: flex;
+  }
+
+  .frame__title {
+    margin: 0;
+    font-weight: normal;
+  }
+
+  .frame__links {
+    padding: 0;
+    margin: 0 0 0 3rem;
+    justify-self: end;
+  }
+
+  .frame__demos {
+    margin: 0 0 0 3rem;
+  }
+
+  .frame__github {
+    grid-area: github;
+    justify-self: end;
+  }
+
+  .frame a {
+    pointer-events: auto;
+  }
+
+  .content {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
